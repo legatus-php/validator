@@ -17,14 +17,14 @@ composer require legatus/validator
 ```php
 <?php
 
-$validator = Validator::build($psr7Request)
+$validator = Legatus\Http\Validator::build($psr7Request)
     ->body('id')->required()->uuid()
     ->body('name.first')->string()->required()
     ->body('name.middle')->string()
     ->body('name.last')->string()->required()
     ->body('password')->string()->required()->min(6)->password()->max(30)
     ->body('birthdate')->string()->date()->before('-18years')
-    ->body('promo_code')->custom(new PromoCode()) // And instance of rule or a callable
+    ->body('promo_code')->custom(new Legatus\Http\PromoCode()) // And instance of rule or a callable
     ->body('emails.*')->email()
     ->body('addresses.*.lineOne')->required()->string()
     ->body('addresses.*.lineTwo')->string()
@@ -35,12 +35,13 @@ $validator = Validator::build($psr7Request)
 
 try {
     $data = $validator->validate();
-} catch (ValidationFailed $e) {
+} catch (Legatus\Http\ValidationFailed $e) {
     // $errors = $e->getErrors();
     // $data = $e->getData();
 }
 
 [$id, $name, $password, $birthDate, $promoCode, $emails, $addresses] = $data->values();
+
 ```
 
 For more details you can check the [online documentation here][docs].

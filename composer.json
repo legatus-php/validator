@@ -12,12 +12,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Legatus\\Http\\Validator\\": "src"
+            "Legatus\\Http\\": ["src/validator", "src/rules", "src/builder", "src/fields"]
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Legatus\\Http\\Validator\\Tests\\": "tests"
+            "Legatus\\Http\\": ["tests/validator", "tests/rules", "tests/builder", "tests/fields"]
         }
     },
     "require": {
