@@ -19,28 +19,20 @@ use Exception;
 class ValidationFailed extends Exception
 {
     private array $data;
-    private array $errors;
 
     /**
      * ValidationFailed constructor.
      *
      * @param array $data
-     * @param array $errors
      */
-    public function __construct(array $data, array $errors)
+    public function __construct(array $data)
     {
         parent::__construct('Validation failed');
         $this->data = $data;
-        $this->errors = $errors;
     }
 
     public function getData(): array
     {
         return $this->data;
-    }
-
-    public function getErrors(): array
-    {
-        return $this->errors;
     }
 }

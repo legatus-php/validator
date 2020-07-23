@@ -33,8 +33,8 @@ class ValidationContext
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->errors = [];
         $this->data = [];
+        $this->errors = [];
     }
 
     public function getRequest(): Request
@@ -50,10 +50,10 @@ class ValidationContext
     public function getResult(): ValidatedData
     {
         if (count($this->errors) > 0) {
-            throw new ValidationFailed($this->data, $this->errors);
+            throw new ValidationFailed($this->createErrorData());
         }
 
-        return new ValidatedData($this->data);
+        return new ValidatedData($this->createValidatedData());
     }
 
     /**
@@ -72,7 +72,7 @@ class ValidationContext
      */
     public function addData(string $path, $data): void
     {
-        $this->pathToArrayAssign($this->data, $path, $data);
+        $this->data[$path] = $data;
     }
 
     /**
@@ -92,5 +92,34 @@ class ValidationContext
         }
 
         $arr = $value;
+    }
+
+    private function createErrorData(): array
+    {
+        $data = $this->createValidatedData(true);
+        foreach ($this->errors as $path => $errors) {
+            foreach ($errors as $type => $message) {
+                $this->pathToArrayAssign($data, $path.'.errors.'.$type, $message);
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * @param bool $appendValue
+     *
+     * @return array
+     */
+    private function createValidatedData(bool $appendValue = false): array
+    {
+        $data = [];
+        foreach ($this->data as $path => $value) {
+            if ($appendValue) {
+                $path .= '.value';
+            }
+            $this->pathToArrayAssign($data, $path, $value);
+        }
+
+        return $data;
     }
 }

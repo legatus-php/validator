@@ -89,8 +89,17 @@ class ValidatorTest extends TestCase
                 ->body('user.id')->uuid()
                 ->getValidator()->validate();
         } catch (ValidationFailed $e) {
-            $errors = $e->getErrors();
-            self::assertArrayHasKey('user.id', $errors);
+            $data = $e->getData();
+            self::assertSame([
+                'user' => [
+                    'id' => [
+                        'value' => '3532532523',
+                        'errors' => [
+                            'uuid' => 'Value must be a uuid string',
+                        ],
+                    ],
+                ],
+            ], $data);
         }
     }
 }
