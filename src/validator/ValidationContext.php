@@ -102,6 +102,7 @@ class ValidationContext
                 $this->pathToArrayAssign($data, $path.'.errors.'.$type, $message);
             }
         }
+
         return $data;
     }
 

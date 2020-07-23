@@ -82,7 +82,7 @@ class PasswordValidationRule implements ValidationRule
 
     private function buildErrorMessage(): string
     {
-        $message = 'Value must contain at least';
+        $message = 'Value must contain at least ';
 
         $errors = [];
         if ($this->force & self::WITH_NUMBER) {
