@@ -54,6 +54,13 @@ class BodyValidationField extends BaseValidationField
         return $this;
     }
 
+    public function boolean(): BodyValidationField
+    {
+        $this->rules[] = new SkipNullValidationRule(new BooleanValidationRule());
+
+        return $this;
+    }
+
     public function string(): BodyValidationField
     {
         $this->rules[] = new SkipNullValidationRule(new StrValidationRule());
