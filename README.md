@@ -46,6 +46,18 @@ try {
 
 For more details you can check the [online documentation here][docs].
 
+## Project status & release process
+
+While this library is still under development, it is well tested and should be stable enough to use in production environments.
+
+The current releases are numbered 0.x.y. When a non-breaking change is introduced (adding new methods, optimizing existing code, etc.), y is incremented.
+
+When a breaking change is introduced, a new 0.x version cycle is always started.
+
+It is therefore safe to lock your project to a given release cycle, such as 0.2.*.
+
+If you need to upgrade to a newer release cycle, check the [release history][releases] for a list of changes introduced by each further 0.x.0 version.
+
 ## Community
 We still do not have a community channel. If you would like to help with that, you can let me know!
 
