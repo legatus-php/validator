@@ -30,7 +30,6 @@ $validator = Legatus\Http\Validator::build($psr7Request)
 try {
     $data = $validator->validate();
 } catch (Legatus\Http\ValidationFailed $e) {
-    // $errors = $e->getErrors();
     // $data = $e->getData();
 }
 

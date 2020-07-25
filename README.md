@@ -3,7 +3,8 @@ Legatus Validator
 
 An HTTP validation library for PSR-7
 
-[![Build Status](https://drone.mnavarro.dev/api/badges/legatus/validator/status.svg)](https://drone.mnavarro.dev/legatus/validator)
+[![Type Coverage](https://shepherd.dev/github/legatus-php/validator/coverage.svg)](https://shepherd.dev/github/legatus-php/validator)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Flegatus-php%2Fvalidator%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/legatus-php/validator/master)
 
 ## Installation
 You can install the Validator component using [Composer][composer]:
@@ -36,7 +37,6 @@ $validator = Legatus\Http\Validator::build($psr7Request)
 try {
     $data = $validator->validate();
 } catch (Legatus\Http\ValidationFailed $e) {
-    // $errors = $e->getErrors();
     // $data = $e->getData();
 }
 
@@ -59,4 +59,5 @@ Please report security issues privately by email and give us a period of grace b
 Legatus is a personal open source project led by Matías Navarro Carter and developed by contributors.
 
 [composer]: https://getcomposer.org/
-[docs]: https://legatus.mnavarro.dev/components/validator
+[docs]: https://legatus.dev/components/validator
+[releases]: https://github.com/legatus-php/validator/releases
